@@ -7,6 +7,8 @@
 
 - I want to learn django.  
 - Write automation scripts.  
+- This is second version of repo after first one was to complex
+- This story is writen by hand (no ai), to keep me in context and to keep it simple as i can (i drift) 
 
 ## Project Tree
 
@@ -82,6 +84,7 @@ python .\script\generate_project.py myproject --skip-migrations --skip-runserver
 ## Delete test proj
 
 - script 'delete_project.py' removes db.sqlite3, linkshelf, manage.py
+- tested
 
 2025-04-03
 ---
