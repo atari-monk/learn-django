@@ -4,8 +4,53 @@ import subprocess
 import argparse
 from typing import Optional
 
-def generate_project(project_name: Optional[str] = None, skip_migrations: bool = False, skip_runserver: bool = False) -> None:
+def ensure_gitignore(root_dir: str) -> None:
+    gitignore_path = os.path.join(root_dir, '.gitignore')
+    gitignore_content = """# Django
+*.sqlite3
+*.pyc
+__pycache__/
+*.log
+*.pot
+*.py[co]
+*.sw[nop]
+*~
+/.venv/
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Static files
+staticfiles/
+mediafiles/
+"""
+
+    if not os.path.exists(gitignore_path):
+        with open(gitignore_path, 'w') as f:
+            f.write(gitignore_content)
+        return
+
+    with open(gitignore_path, 'r') as f:
+        existing_content = f.read()
+
+    if "# Django" not in existing_content:
+        with open(gitignore_path, 'a') as f:
+            f.write("\n" + gitignore_content)
+
+def generate_project(project_name: Optional[str] = None, skip_migrations: bool = False, skip_runserver: bool = False) -> None:
     if project_name is None:
         project_name = input("Enter the Django project name: ").strip()
         if not project_name:
@@ -28,6 +73,8 @@ def generate_project(project_name: Optional[str] = None, skip_migrations: bool =
     except subprocess.CalledProcessError as e:
         print(f"Error creating project: {e}")
         sys.exit(1)
+
+    ensure_gitignore(root_dir)
 
     if not skip_migrations:
         print("Applying migrations...")

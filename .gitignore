@@ -1,2 +1,33 @@
 linkshelf
 helpers
+manage.py
+# Django
+*.sqlite3
+*.pyc
+__pycache__/
+*.log
+*.pot
+*.py[co]
+*.sw[nop]
+*~
+/.venv/
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Static files
+staticfiles/
+mediafiles/
