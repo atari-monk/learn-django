@@ -31,6 +31,7 @@ C:\atari-monk\code\learn-django
 - install if not installed
 - it needs to be able to be run any time and in bigger script when framework needs to be checked
 - i skipped considering virtual environment/global and such stuff for now
+- tested
 
 ## They way of using scripts
 
@@ -55,6 +56,7 @@ cls
 - I want a script to generate django project 'generate_project.py'
 - script is in root/script
 - make files and project in root
+- adds gitignore sections related to django proj
 - it needs to be run standalone and in bigger script both
 - has header: def generate_project(project_name=None, skip_migrations=False, skip_runserver=False):
 - it uses input if none or argparse for params form cli
@@ -69,8 +71,17 @@ or optionaly:
 ```sh
 python .\script\generate_project.py myproject --skip-migrations --skip-runserver
 ```
+- tested
 
 ## .gitignore
 
 - ignored 'linkshelf' project while testing scripts
 - ignored 'helpers' folder with some temporary helping utility scripts
+- ignored 'manage.py' from django test proj
+
+## Delete test proj
+
+- script 'delete_project.py' removes db.sqlite3, linkshelf, manage.py
+
+2025-04-03
+---
