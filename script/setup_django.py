@@ -3,7 +3,7 @@ import sys
 from typing import Optional
 
 def get_django_version() -> Optional[str]:
-    """Get Django version if installed, returns None if not installed."""
+
     try:
         version = subprocess.check_output(
             [sys.executable, "-m", "django", "--version"],
@@ -15,7 +15,7 @@ def get_django_version() -> Optional[str]:
         return None
 
 def install_django() -> bool:
-    """Install Django using pip. Returns True if successful."""
+
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install", "django"])
         print("\n✅ Django installed successfully!")
@@ -25,7 +25,7 @@ def install_django() -> bool:
         return False
 
 def update_django() -> bool:
-    """Update Django to the latest version. Returns True if successful."""
+
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "django"])
         print("\n✅ Django updated successfully!")
@@ -35,7 +35,7 @@ def update_django() -> bool:
         return False
 
 def prompt_user(prompt: str) -> bool:
-    """Helper function to get yes/no input from user."""
+
     while True:
         response = input(prompt + " (y/n): ").lower()
         if response in ['y', 'yes']:
@@ -45,18 +45,14 @@ def prompt_user(prompt: str) -> bool:
         print("Please enter 'y' or 'n'.")
 
 def setup_django() -> bool:
-    """
-    Check Django installation status and handle installation/update as needed.
-    Returns True if Django is ready to use after this function.
-    """
+
     print("\n🚀 Checking Django setup...")
-    
+
     version = get_django_version()
-    
+
     if version is not None:
         print(f"\n✅ Django is installed (version: {version})")
-        
-        # Check if user wants to update
+
         if prompt_user("\nWould you like to check for updates and install the latest version?"):
             if update_django():
                 version = get_django_version()
